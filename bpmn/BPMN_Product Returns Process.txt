@@ -1,0 +1,93 @@
+// Product Returns Process BPMN
+
+title Product Returns Process
+
+Customer [color: teal] {
+  Request Return [type: event, icon: rotate-ccw]
+  Receive Return Instructions [type: activity, icon: mail]
+  Ship or Drop Off Item [type: activity, icon: package]
+  Receive Outcome Notification [type: event, icon: bell]
+}
+
+Returns Dept [color: orange] {
+  Review Return Request [type: activity, icon: file-text]
+  Eligible for Return? [type: gateway, icon: check-circle]
+  Send Rejection Notice [type: activity, icon: x-circle]
+  Send Return Instructions [type: activity, icon: send]
+  Update Spreadsheet_1 [type: activity, icon: file, label: "Update Spreadsheet"]
+  Decide Refund Type [type: gateway, icon: dollar-sign]
+  Issue Full Refund [type: activity, icon: credit-card]
+  Issue Partial Refund [type: activity, icon: percent]
+  Issue Store Credit [type: activity, icon: gift]
+  Send Replacement Item [type: activity, icon: refresh-cw]
+  Notify Return Complete [type: activity, icon: check]
+  Update Spreadsheet_2 [type: activity, icon: file, label: "Update Spreadsheet"]
+  Close Case [type: event, icon: archive]
+}
+
+Warehouse [color: blue] {
+  Receive Item [type: event, icon: inbox]
+  Inspect Item [type: activity, icon: search]
+  Item Acceptable? [type: gateway, icon: help-circle]
+  Update Stock Records [type: activity, icon: database]
+  Offer Partial Refund or Return [type: activity, icon: alert-triangle]
+  Update Spreadsheet_3 [type: activity, icon: file, label: "Update Spreadsheet"]
+}
+
+Spreadsheet [color: green] {
+  Record Update [type: event, icon: file-text]
+}
+
+// Connections
+
+// Customer to Returns Dept
+Request Return --> Review Return Request
+
+// Returns Dept: eligibility check
+Review Return Request > Eligible for Return?
+Eligible for Return? > Send Return Instructions : Yes
+Eligible for Return? > Send Rejection Notice : No
+
+// Rejection path
+Send Rejection Notice > Update Spreadsheet_1
+Update Spreadsheet_1 > Close Case
+Close Case --> Receive Outcome Notification
+
+// Approval path
+Send Return Instructions --> Receive Return Instructions
+Receive Return Instructions > Ship or Drop Off Item
+Ship or Drop Off Item --> Receive Item
+
+// Warehouse receives and inspects
+Receive Item > Inspect Item
+Inspect Item > Item Acceptable?
+
+// If item is not acceptable
+Item Acceptable? > Offer Partial Refund or Return : No
+Offer Partial Refund or Return > Update Spreadsheet_3
+Update Spreadsheet_3 > Decide Refund Type
+
+// If item is acceptable
+Item Acceptable? > Update Stock Records : Yes
+Update Stock Records > Update Spreadsheet_3
+Update Spreadsheet_3 > Decide Refund Type
+
+// Decide refund type
+Decide Refund Type > Issue Full Refund : Full Refund
+Decide Refund Type > Issue Partial Refund : Partial Refund
+Decide Refund Type > Issue Store Credit : Store Credit
+Decide Refund Type > Send Replacement Item : Replacement
+
+// All refund outcomes update spreadsheet and notify customer
+Issue Full Refund > Update Spreadsheet_2
+Issue Partial Refund > Update Spreadsheet_2
+Issue Store Credit > Update Spreadsheet_2
+Send Replacement Item > Update Spreadsheet_2
+
+Update Spreadsheet_2 > Notify Return Complete
+Notify Return Complete --> Receive Outcome Notification
+
+// All spreadsheet updates send event to Spreadsheet pool
+Update Spreadsheet_1 --> Record Update
+Update Spreadsheet_2 --> Record Update
+Update Spreadsheet_3 --> Record Update

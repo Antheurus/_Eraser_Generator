@@ -1,0 +1,77 @@
+// Expense Submission and Approval Process BPMN
+
+title Expense Submission and Approval
+
+User [color: lightblue] {
+  Login_User [type: activity, icon: log-in, label: "Login"]
+  Access Confirmed [type: event, icon: check-circle, label: "Access Confirmed"]
+  Start Expense Report [type: activity, icon: file-plus, label: "Start Expense Report"]
+  Upload Receipts [type: activity, icon: upload, label: "Upload Receipts"]
+  Manual Correction [type: activity, icon: edit-3, label: "Manual Correction"]
+  Edit & Resubmit [type: activity, icon: edit, label: "Edit & Resubmit"]
+  Reimbursed [type: event, icon: dollar-sign, label: "Reimbursed"]
+  End_User [type: event, icon: check, label: "Process Complete"]
+}
+
+System [color: orange] {
+  OCR Extraction [type: activity, icon: eye, label: "OCR Extraction"]
+  OCR Error? [type: gateway, icon: alert-triangle, label: "OCR Error?"]
+  Check Amount [type: activity, icon: search-dollar, label: "Check Amount"]
+  Amount Decision [type: gateway, icon: filter, label: "Amount Decision"]
+  "Auto-Approve" [type: activity, icon: thumbs-up, label: "Auto-Approve"]
+  "Auto-Reject" [type: activity, icon: thumbs-down, label: "Auto-Reject"]
+  Manager Override? [type: gateway, icon: user-check, label: "Manager Override?"]
+  Process Reimbursement [type: activity, icon: credit-card, label: "Process Reimbursement"]
+}
+
+Manager [color: green] {
+  Review Expense [type: activity, icon: eye, label: "Review Expense"]
+  Approve? [type: gateway, icon: check-square, label: "Approve?"]
+  Approve_Expense [type: activity, icon: thumbs-up, label: "Approve"]
+  Reject_Expense [type: activity, icon: thumbs-down, label: "Reject"]
+  Override Approval [type: activity, icon: user-check, label: "Override Approval"]
+}
+
+// Connections
+
+Login_User > Access Confirmed
+Access Confirmed > Start Expense Report
+Start Expense Report > Upload Receipts
+Upload Receipts > OCR Extraction
+OCR Extraction > OCR Error?
+OCR Error? > Manual Correction : Yes
+Manual Correction > OCR Extraction
+OCR Error? > Check Amount : No
+Check Amount > Amount Decision
+
+Amount Decision > "Auto-Approve" : Under $50
+"Auto-Approve" > Process Reimbursement
+Amount Decision > Review Expense : $50-$500
+Amount Decision > "Auto-Reject" : Over $500
+
+"Auto-Reject" > Manager Override?
+Manager Override? > Override Approval : Yes
+Manager Override? > Edit & Resubmit : No
+Override Approval > Process Reimbursement
+
+Review Expense > Approve?
+Approve? > Approve_Expense : Approve
+Approve? > Reject_Expense : Reject
+Approve_Expense > Process Reimbursement
+Reject_Expense > Edit & Resubmit
+
+Process Reimbursement > Reimbursed
+Reimbursed > End_User
+
+Edit & Resubmit > Upload Receipts
+
+// Message Flows (dashed, between pools)
+Start Expense Report --> OCR Extraction
+Upload Receipts --> OCR Extraction
+"Auto-Approve" --> Process Reimbursement
+Override Approval --> Process Reimbursement
+Approve_Expense --> Process Reimbursement
+Process Reimbursement --> Reimbursed
+Review Expense --> Approve?
+"Auto-Reject" --> Manager Override?
+Reject_Expense --> Edit & Resubmit

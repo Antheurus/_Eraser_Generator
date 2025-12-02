@@ -1,0 +1,77 @@
+users [icon: user]{
+  id string pk
+  displayName string
+  email string
+  userSettingsId string
+  rolesId string
+}
+
+bookings [icon: calendar]{
+  id string pk
+  userId string
+  eventTypeId string
+  paymentId string
+  notificationsId string
+  date timestamp
+  duration number
+}
+
+payments [icon: credit-card]{
+  id string pk
+  amount number
+  method string
+  transactionId string
+}
+
+event_types [icon: tag]{
+  id string pk
+  name string
+  description string
+  categoryId string
+}
+
+user_settings [icon: settings]{
+  id string pk
+  notificationsEnabled boolean
+  theme string
+}
+
+categories [icon: list]{
+  id string pk
+  name string
+}
+
+notifications [icon: bell]{
+  id string pk
+  userId string
+  message string
+  createdAt timestamp
+}
+
+roles [icon: key]{
+  id string pk
+  name string
+}
+
+transactions [icon: shuffle]{
+  id string pk
+  statusId string
+  amount number
+  createdAt timestamp
+}
+
+transaction_status [icon: check-circle]{
+  id string pk
+  status string
+}
+
+users.bookings <> bookings.id
+bookings.paymentId > payments.id
+bookings.eventTypeId > event_types.id
+users.userSettingsId > user_settings.id
+event_types.categoryId > categories.id
+notifications.userId > users.id
+bookings.notificationsId > notifications.id
+users.rolesId > roles.id
+payments.transactionId > transactions.id
+transactions.statusId > transaction_status.id

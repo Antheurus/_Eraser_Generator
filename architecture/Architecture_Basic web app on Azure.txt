@@ -1,0 +1,35 @@
+direction right
+
+Azure Active Directory [icon: azure-active-directory]
+Internet [icon: azure-internet-analyzer-profiles]
+Azure DNS [icon: azure-dns-zones]
+
+Resource Groups [icon: azure-resource-groups] {
+  Azure Key Vault [icon: azure-key-vaults]
+  Deployment slots {
+    App Service Plan [icon: azure-app-service-plans]
+    App Server web app [icon: azure-app-services]
+    Production [icon: azure-web-test]
+    Stage [icon: azure-web-test]
+    Last good [icon: azure-web-test]
+  }
+  Servers and Databases {
+    Logical Server [icon: azure-sql-server]
+    Database [icon: azure-sql-database]
+  }
+  Analytics {
+    Azure Monitor [icon: azure-monitor]
+    Log Analytics [icon: azure-log-analytics-workspaces]
+  }
+}
+
+Azure DNS <-- Internet --> Azure Active Directory
+Internet <> Deployment slots
+Azure Key Vault <> Deployment slots
+Azure Key Vault --> Analytics:Diagnostic logs and metric data
+Deployment slots --> Analytics:Diagnostic logs and metric data
+Deployment slots <> Servers and Databases
+Servers and Databases --> Analytics:Metric data Audit and diagnostic logs
+App Server web app > Production
+App Server web app > Stage
+App Server web app > Last good

@@ -1,0 +1,15 @@
+Amazon S3 (source) [icon: aws-s3]
+AWS Elemental MediaConvert [icon: aws-elemental-mediaconvert]
+Amazon S3 (destination) [icon: aws-s3]
+Amazon CloudFront [icon: aws-cloudfront]
+AWS Lambda (job submit) [icon: aws-lambda]
+Amazon CloudWatch [icon: aws-cloudwatch]
+Amazon EventBridge [icon: aws-eventbridge]
+AWS Lambda (job complete) [icon: aws-lambda]
+Amazon Simple Notification Service [icon: aws-simple-notification-service]
+
+
+Amazon S3 (source) > AWS Elemental MediaConvert > Amazon S3 (destination) > Amazon CloudFront
+Amazon S3 (destination) > AWS Lambda (job complete) > Amazon S3 (source)
+Amazon S3 (source) > AWS Lambda (job submit) > AWS Elemental MediaConvert > Amazon CloudWatch
+AWS Elemental MediaConvert > Amazon EventBridge > AWS Lambda (job complete) > Amazon Simple Notification Service

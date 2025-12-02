@@ -1,0 +1,48 @@
+Devices {
+  Azure IoT SDK [icon: gear]
+  Azure RTOS [icon: azure-rtos]
+  Azure Sphere [icon: azure-sphere]
+}
+
+Azure IoT Edge [icon: azure-iot-edge]
+
+Ingestion & provisioning {
+  Azure IoT Hub [icon: azure-iot-hub]
+  Device Provisioning Service [icon: azure-device-provisioning-services]
+  Azure Digital Twins [icon: azure-digital-twins]
+}
+
+Hot path {
+  Azure Stream Analytics [icon: azure-stream-analytics-jobs]
+  HDInsight Spark & Storm [icon: azure-hd-insight-clusters]
+}
+
+Warm path {
+  Azure Data Explorer [icon: azure-data-explorer-clusters]
+}
+
+Cold path {
+  Azure Machine Learning [icon: azure-machine-learning]
+  Azure Data Bricks [icon: azure-databricks]
+}
+
+Management & business integration {
+  Power BI [icon: power-bi]
+  Azure Maps [icon: azure-maps-accounts]
+  Search [icon: azure-search-services]
+  API Management [icon: azure-api-management-services]
+  Web apps [icon: azure-app-services]
+  Mobile apps [icon: azure-mobile]
+  Dynamics 365 [icon: dynamics-365]
+  Flow [icon: azure-workflow]
+  Logic apps [icon: azure-logic-apps]
+}
+
+Devices <> Azure IoT Edge <> Ingestion & provisioning
+Devices <> Ingestion & provisioning
+Ingestion & provisioning > Hot path
+Ingestion & provisioning > Warm path
+Ingestion & provisioning > Cold path
+Hot path > Management & business integration
+Warm path > Management & business integration
+Cold path > Management & business integration

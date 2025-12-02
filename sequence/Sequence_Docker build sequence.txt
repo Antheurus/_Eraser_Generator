@@ -1,0 +1,36 @@
+Terminal  > Buildx:$ docker buildx build
+Buildx --> BuildKit:Build request (Dockerfile, args, export config...)
+BuildKit > BuildKit: Resolve build definition
+Buildx --> BuildKit:Status request
+BuildKit --> Buildx:Status response
+Buildx  > Terminal:< progress >
+BuildKit > BuildKit: Run build operations
+BuildKit --> Buildx:Get build context
+activate BuildKit
+activate Buildx
+Buildx --> BuildKit:Transfer context
+deactivate BuildKit
+deactivate Buildx
+Buildx  > Terminal:< progress >
+BuildKit --> Buildx:Get build secret
+activate BuildKit
+activate Buildx
+Buildx --> BuildKit:Transfer secret
+deactivate BuildKit
+deactivate Buildx
+BuildKit > BuildKit: Export build results
+Buildx  > Terminal:< progress >
+Buildx <-- BuildKit:Get registry token
+activate BuildKit
+activate Buildx
+BuildKit <-- Buildx:Transfer token
+deactivate BuildKit
+deactivate Buildx
+BuildKit --> Registry:Push
+activate BuildKit
+activate Registry
+Registry --> BuildKit:200 OK
+deactivate BuildKit
+deactivate Registry
+BuildKit --> Buildx:Done
+Buildx  > Terminal:FINISHED

@@ -1,0 +1,69 @@
+// Define groups and nodes
+Management Account [icon: layers]{
+  AWS CloudFormation [icon: aws-cloudformation, label: "AWS CloudFormation AWSAccelerator-InstallerStack.template"]
+  Installer {
+    AWS CodePipeline [icon: aws-codepipeline, label:"AWS CodePipeline AWSAccelerator-Installer"]
+    GitHub [icon: github, label:"GitHub awslabs/landing-zone-accelerator-on-aws"]
+    AWS CodeBuild [icon: aws-codebuild, label: "AWS CodeBuild AWSAccelerator-InstallerProject"]
+  }
+
+  Core {
+    AWS CodePipeline 2 [icon: aws-codepipeline, label: "AWS CodePipeline AWSAccelerator-Pipeline"]
+    Source {
+      AWS CodeCommit [icon: aws-codecommit, label: "AWS CodeCommit aws-accelerator-config"]
+      GitHub 2 [icon: github, label: "GitHub awslabs/landing-zone-accelerator-on-aws"]
+    }
+    Build {
+      AWS CodeBuild 2 [icon: aws-codebuild, label: "AWS CodeBuild AWSAccelerator-BuildProject"]
+    }
+    Deployment Stages {
+      AWS CodeBuild 3 [icon: aws-codebuild, label: "AWS CodeBuild AWSAccelerator-ToolkitProject"]
+    }
+    
+  }
+
+  Amazon SNS [icon: aws-sns, label: "Amazon SNS Pipeline Notifications"]
+  AWS KMS [icon: aws-kms, label: "AWS KMS Management Keys"]
+
+  Account Creation Management [label: "Account Creation Management/Control Tower Drift Detection"] {
+    Amazon EventBridge [icon: aws-eventbridge, label: "Amazon EventBridge Control Tower Events"]
+    AWS Lambda [icon: aws-lambda, label: "AWS Lambda Management Functions"]
+    AWS Step Functions [icon: aws-step-functions, label: "AWS Step Functions Management Functions"]
+    Amazon DynamoDB [icon: aws-dynamodb, label: "Amazon DynamoDB Environment Configuration"]
+  }
+}
+
+Log Archive Account [icon: layers]{
+  Centralized Logging {
+    Amazon Kinesis Data Streams [icon: aws-kinesis-data-streams]
+    Amazon Kinesis Data Firehose [icon: aws-kinesis-firehose]
+    AWS KMS 2 [icon: aws-kms, label: "AWS KMS Centralized Logging Keys"]
+    Amazon S3 [icon: aws-s3, label: "Amazon S3 aws-accelerator-central-logs"]
+    Amazon S3 2 [icon: aws-s3, label: "Amazon S3 aws-accelerator-s3-access-logs"]
+    Amazon S3 3 [icon: aws-s3, label: "Amazon S3 aws-accelerator-elb-access-logs"]
+  }
+}
+
+Workload Accounts {
+  Amazon EventBridge 2 [icon: aws-eventbridge, label: "Amazon EventBridge New CloudWatch Log Groups Events"]
+  AWS Lambda 2 [icon: aws-lambda, label: "AWS Lambda Central Logging Subscription"]
+  AWS KMS 3 [icon: aws-kms, label: "AWS KMS Per-Account/Per-Region Keys"]
+  Amazon S3 4 [icon: aws-s3, label: "Amazon S3 aws-accelerator-s3-access-logs"]
+}
+
+// Define connections
+AWS CloudFormation > AWS CodePipeline > GitHub > AWS CodeBuild
+
+Installer > Amazon SNS
+Installer > AWS KMS
+
+Installer > Core
+
+AWS CodePipeline 2 > Source
+
+Deployment Stages > Account Creation Management
+Amazon EventBridge > AWS Lambda
+
+Amazon Kinesis Data Streams > Amazon Kinesis Data Firehose
+
+Amazon EventBridge 2 > AWS Lambda 2

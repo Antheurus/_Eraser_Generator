@@ -1,0 +1,20 @@
+Request (browser) [icon: http]
+Users [icon: users]
+Azure [icon: azure] {
+  App Service app [icon: azure-app-services]
+  Application Insights [icon: azure-application-insights]
+  SQL [icon: azure-sql-database]
+  Azure Monitor [icon: azure-monitor]
+  Log Analytics [icon: azure-log-analytics-workspaces]
+
+  Insights {
+    Dashboard [icon: azure-dashboard]
+    Diagnostics [icon: azure-diagnostics-settings]
+    Alerts [icon: bell]
+  }
+}
+
+Users > Request (browser) > Application Insights
+Request (browser) > App Service app > Application Insights > Insights
+App Service app > SQL > Azure Monitor > Insights
+Azure Monitor > Log Analytics > Insights

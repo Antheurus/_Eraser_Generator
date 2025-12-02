@@ -1,0 +1,30 @@
+title Kubernetes on AWS
+Users [icon: user]
+aws [icon: aws] {
+  WAF [icon: aws-waf]
+  API Gateway [icon: aws-api-gateway]
+  VPC [icon: aws-vpc] {
+    Load Balancer [icon: aws-elastic-load-balancing] 
+    Kubernetes [icon: kubernetes]{
+      NGINX Ingress [icon: nginx]
+      Availability Zone 1 {
+        Search Service1 [icon: search, label: "Search Service"]
+        Pods1 [icon: k8s-pod, label: "Pods"]
+        Email Service1 [icon: send, label: "Email Service"]
+        Pods2 [icon: k8s-pod, label: "Pods"]
+      }
+      Availability Zone 2 [label: "Availability Zone 1"] {
+        Search Service2 [icon: search, label: "Search Service"]
+        Pods3 [icon: k8s-pod, label: "Pods"]
+        Email Service2 [icon: send, label: "Email Service"]
+        Pods4 [icon: k8s-pod, label: "Pods"]
+      }
+    }
+  }
+}
+
+Users > WAF > API Gateway > Load Balancer > NGINX Ingress
+NGINX Ingress > Search Service1 > Pods1
+NGINX Ingress > Email Service1 > Pods2
+NGINX Ingress > Search Service2 > Pods3
+NGINX Ingress > Email Service2 > Pods4

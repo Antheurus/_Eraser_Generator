@@ -1,0 +1,59 @@
+users [icon: user]{
+  id string pk
+  username string
+  email string
+}
+devices [icon: cpu]{
+  id string pk
+  name string
+  typeId string
+  locationId string
+}
+energySources [icon: wind]{
+  id string pk
+  name string
+  typeId string
+}
+energyTypes [icon: zap]{
+  id string pk
+  name string
+}
+reports [icon: file-text]{
+  id string pk
+  userId string
+  deviceId string
+  energySourceId string
+  timeFrameId string
+}
+timeFrames [icon: clock]{
+  id string pk
+  start timestamp
+  end timestamp
+}
+locations [icon: map-pin]{
+  id string pk
+  name string
+}
+energyConsumptions [icon: battery-charging]{
+  id string pk
+  deviceId string
+  energySourceId string
+  timeFrameId string
+  measurementId string
+}
+measurements [icon: bar-chart-2]{
+  id string pk
+  unit string
+  value number
+}
+users.devices <> devices.id
+users.reports > reports.id
+devices.energySources <> energySources.id
+devices.energyConsumptions > energyConsumptions.id
+energySources.energyTypes > energyTypes.id
+reports.devices > devices.id
+reports.energySources > energySources.id
+reports.timeFrames > timeFrames.id
+devices.locations > locations.id
+energyConsumptions.timeFrames > timeFrames.id
+energyConsumptions.measurements > measurements.id

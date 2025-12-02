@@ -1,0 +1,51 @@
+direction right
+
+Data Center [icon: server] {
+  Web proxy [icon: monitor]
+  Local network {
+    Disk1 [icon: database, label: "Disks"]
+    Disk2 [icon: database, label: "Disks"]
+    Disk3 [icon: database, label: "Disks"]
+    Disk4 [icon: database, label: "Disks"]
+    AWS Replication agent1 [icon: monitor, label: "AWS Replication agent"]
+    AWS Replication agent2 [icon: monitor, label: "AWS Replication agent"]
+  }
+}
+
+AWS Cloud [icon: aws] {
+  AWS Region [icon: browser] {
+    AWS Services {
+      DRS [icon: aws-cloudendure-disaster-recovery]
+      EC2 [icon: aws-ec2]
+      S3 [icon: aws-s3]
+    }
+    Staging Area Subnets (in user VPC) [icon: aws-vpc] {
+      Replication Servers [icon: aws-ec2]
+      EBS volumes1 [icon: aws-ebs, label: "EBS volumes"]
+      EBS volumes2 [icon: aws-ebs, label: "EBS volumes"]
+      EBS volumes3 [icon: aws-ebs, label: "EBS volumes"]
+    }
+    Recovery Subnets (in user VPC) [icon: aws-vpc] {
+      Recovery instance [icon: aws-ec2]
+      EBS volumes4 [icon: aws-ebs, label: "EBS volumes"]
+      EBS volumes5 [icon: aws-ebs, label: "EBS volumes"]
+      EBS volumes6 [icon: aws-ebs, label: "EBS volumes"]
+    }
+  }
+}
+
+Local network > Web proxy
+Web proxy > DRS
+Disk1 > AWS Replication agent1
+Disk2 > AWS Replication agent1
+Disk3 > AWS Replication agent2
+Disk4 > AWS Replication agent2 > Staging Area Subnets (in user VPC)
+Staging Area Subnets (in user VPC) > DRS:Status updates
+Staging Area Subnets (in user VPC) > EC2:Replication resource creation
+Staging Area Subnets (in user VPC) > S3:Replication SW download
+Replication Servers > EBS volumes1
+Replication Servers > EBS volumes2
+Replication Servers > EBS volumes3
+Recovery instance > EBS volumes4
+Recovery instance > EBS volumes5
+Recovery instance > EBS volumes6

@@ -1,0 +1,47 @@
+// Define groups and nodes
+AWS Cloud [icon: aws]{
+  Amazon CloudFront [icon: aws-cloudfront]
+  Amazon S3 [icon: aws-s3]
+  Amazon API Gateway [icon: aws-api-gateway]
+  AWS Lambda [icon: aws-lambda]
+  Amazon DynamoDB [icon: aws-dynamodb]
+  OpenID Connect {
+    Amazon Cognito User Pool [icon: aws-cognito]
+  }
+  Pipeline Orchestration {
+    AWS CloudFormation [icon: aws-cloudformation]
+    AWS Step Functions [icon: aws-step-functions]
+    Amazon EventBridge [icon: aws-eventbridge]
+    AWS Lambda 2 [icon: aws-lambda, label: "AWS Lambda"]
+  }
+  Data Pipeline {
+    Elastic Load balancer [icon: aws-elastic-load-balancing]
+    Amazon ECS [icon: aws-ecs]
+    Data Flow in S3 {
+      Amazon Managed Streaming for Apache Kafka [icon: aws-managed-streaming-for-apache-kafka]
+      Amazon Kinesis Data Streams [icon: aws-kinesis-data-streams]
+      Amazon S3 2 [icon: aws-s3, label: "Amazon S3"]
+    }
+    Amazon EMR Serverless [icon: aws-serverless]
+    Amazon Redshift [icon: aws-redshift, label: "Amazon Redshift (Provision/Serverless)"]
+    Amazon QuickSight [icon: aws-quicksight]
+  }
+}
+
+Admin [icon: user]
+
+// Define connections
+Admin > Amazon CloudFront
+Amazon CloudFront > Amazon S3
+Amazon CloudFront > Amazon API Gateway
+Amazon API Gateway > AWS Lambda
+Amazon API Gateway > OpenID Connect: Authenticate
+Amazon S3 > OpenID Connect: Login
+AWS Lambda > Amazon DynamoDB: Read & Write
+AWS Lambda > Pipeline Orchestration: Execute
+Pipeline Orchestration > Data Pipeline
+Pipeline Orchestration > Amazon DynamoDB
+Elastic Load balancer > Amazon ECS --> Amazon S3 2
+Amazon ECS --> Amazon Managed Streaming for Apache Kafka > Amazon S3 2
+Amazon ECS --> Amazon Kinesis Data Streams > Amazon S3 2
+Amazon S3 2 > Amazon EMR Serverless > Amazon Redshift > Amazon QuickSight

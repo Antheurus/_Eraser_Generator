@@ -1,0 +1,51 @@
+
+Region 1 [icon: flag, label: Region] {
+  log ingestion 1 [label: "log ingestion"] {
+    Amazon CloudWatch logs destination [icon: aws-cloudwatch]
+    demo resources 1 [label: "demo resources"] {
+      AWS CloudTrail [icon: aws-cloudtrail]
+      Amazon Elastic Compute Cloud [icon: aws-compute]
+      Amazon VPC Flow logs [icon: aws-vpc-flow-logs]
+    }
+  }
+}
+
+
+
+Region 2 [icon: flag, label: Region] {
+  log ingestion 2 [label: "log ingestion"] {
+    Amazon CloudWatch logs destination 2 [icon: aws-cloudwatch, label: "Amazon CloudWatch logs destination"]
+    demo resources 2 [label: "demo resources"] {
+      AWS CloudTrail 2 [icon: aws-cloudtrail, label: "AWS CloudTrail"]
+      Amazon Elastic Compute Cloud 2 [icon: aws-compute, label: "Amazon Elastic Compute Cloud"]
+      Amazon VPC Flow logs 2 [icon: aws-vpc-flow-logs, label: "Amazon VPC Flow logs"]
+    }
+  }
+}
+
+log indexing {
+  Amazon Kinesis Data Streams [icon: aws-kinesis-data-streams]
+  AWS Lambda [icon: aws-lambda]
+  Amazon Kinesis Data Firehose [icon: aws-kinesis-firehose]
+  VPC [icon: aws-vpc] {
+    Amazon OpenSearch Service [icon: aws-opensearch-service]
+  }
+}
+
+visualization {
+  Amazon Cognito [icon: aws-cognito]
+  Data Analysis and Charts [icon: computer]
+  user [icon: user]
+  kibana [icon: kibana, color: cyan]
+}
+
+Amazon Simple Storage Service (Amazon S3) [icon: aws-s3]
+
+Amazon Elastic Compute Cloud > Amazon CloudWatch logs destination > Amazon Kinesis Data Streams > AWS Lambda > Amazon Kinesis Data Firehose > Amazon OpenSearch Service
+
+Amazon Elastic Compute Cloud 2 > Amazon CloudWatch logs destination 2 > Amazon Kinesis Data Streams
+
+Amazon Kinesis Data Firehose > Amazon Simple Storage Service (Amazon S3)
+
+Data Analysis and Charts > Amazon Cognito > Amazon OpenSearch Service
+

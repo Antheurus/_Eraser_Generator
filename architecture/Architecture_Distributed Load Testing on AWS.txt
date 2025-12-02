@@ -1,0 +1,66 @@
+// Define groups and nodes
+front end {
+    web console {
+    Amazon S3 WC [icon: aws-s3, label: "Amazon S3"]
+    Amazon CloudFront [icon:      aws-cloudfront]
+    AWS Amplify [icon: aws-amplify]
+  }
+
+  load testing API {
+    Amazon API Gateway [icon: aws-api-gateway]
+    AWS Lambda LTA [icon: aws-lambda, label: "AWS Lambda"]
+    Amazon Cognito [icon: aws-cognito]
+    AWS IAM [icon: aws-iam]
+  }
+}
+
+backend {
+  load testing engine{
+    Amazon S3 LTE [icon: aws-s3, label: "Amazon S3"]
+    Amazon DynamoDB [icon: aws-dynamodb]
+    Task runner [icon: aws-app-runner] {
+      AWS Lambda LTE [icon: aws-lambda, label: "AWS Lambda"]
+    }
+  }
+}
+
+region {
+  Regional load testing resources {
+    VPC [icon: aws-vpc]{
+      Amazon ECS [icon: aws-ecs]
+      AWS Fargate [icon: aws-fargate]
+    }
+    AWS IoT Core [icon: aws-iot-core]
+    AWS Lambda RLTR [icon: aws-lambda, label: "AWS Lambda"]
+    Amazon CloudWatch [icon: aws-cloudwatch]
+  }
+}
+
+Image repo {
+  Taurus container image [icon: image]
+  Public ECR image repository [icon: database]
+}
+
+// Define connections
+// Frontend connections
+Amazon S3 WC <> Amazon CloudFront
+Amazon S3 WC <> AWS Amplify
+Amazon API Gateway <> AWS Lambda LTA
+Amazon API Gateway <> Amazon Cognito
+Amazon Cognito <> AWS IAM
+web console <> load testing API
+
+front end <> backend
+
+// backend connections
+Amazon S3 LTE <> Task runner
+Amazon DynamoDB <> Task runner
+
+// region connections
+Task runner <> VPC
+VPC > Amazon CloudWatch
+Amazon CloudWatch > AWS Lambda RLTR
+AWS Lambda RLTR > AWS IoT Core
+
+Taurus container image > Public ECR image repository
+Public ECR image repository <> VPC

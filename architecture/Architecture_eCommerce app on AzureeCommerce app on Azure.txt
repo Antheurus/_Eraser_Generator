@@ -1,0 +1,22 @@
+Browser [icon: azure-browser]
+Azure Content Delivery Network [icon: azure-cdn-profiles]
+Azure Traffic Manager [icon: azure-traffic-manager-profiles]
+Cognitive Services [icon: azure-cognitive-services, label: "Cognitive Services: Sentiment analysis"]
+Event Functions [icon: azure-function-apps, label: "Event Functions: Ticket generation & review analysis"]
+Event queue [icon: azure-storage-queue, label: "Event queue: Ticket purchases & user review"]
+Web app [icon: azure-app-services, label: "Web app: Concert tickets"]
+Azure Active Directory B2C [icon: azure-ad-b2c]
+Application Insights [icon: azure-application-insights]
+
+Azure Data Management Stack {
+  Cognitive Search [icon: azure-search-services]
+  Blob Storage [icon: azure-blob-block, label: "Blob Storage: Ticket images"]
+  Azure Cache for Redis [icon: azure-cache-redis]
+  Azure SQL Database [icon: azure-sql-database]
+}
+
+Browser < Azure Traffic Manager
+Azure Traffic Manager > Azure Content Delivery Network
+Azure Traffic Manager > Web app > Azure Active Directory B2C
+Cognitive Services < Event Functions < Event queue < Web app 
+Web app > Azure Data Management Stack

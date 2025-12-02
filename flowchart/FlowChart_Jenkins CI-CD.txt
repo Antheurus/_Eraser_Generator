@@ -1,0 +1,36 @@
+direction right
+
+
+Start [color: lightblue, icon: play-circle]
+SCM Commit [color: orange, icon: git-commit]
+RepoBranchAndName [color: lightyellow, icon: git-branch]
+Workflow Start [color: lightblue, icon: play]
+SCM Checkout [color: orange, icon: download]
+Collect Dependent Repos [color: green, icon: layers]
+BuildLaunchDocker [color: orange, icon: package]
+Test [color: green, icon: check-circle]
+Deploy [color: lightblue, icon: upload]
+Workflow End [color: lightblue, icon: stop-circle]
+Start [shape: oval] > SCM Commit > RepoBranchAndName [shape: parallelogram, label: "Repo & Branch Name"] > Workflow Start [shape: oval] > SCM Checkout > Collect Dependent Repos > BuildLaunchDocker [label: "Build/Launch (Docker)"] > Test > Deploy > Workflow End [shape: oval]
+BuildLaunchModule1 [color: orange, icon: package]
+BuildLaunchDocker > BuildLaunchModule1[label: "Build/Launch Module 1"]: Parallel
+BuildLaunchModuleN [color: orange, icon: package]
+BuildLaunchDocker > BuildLaunchModuleN[label: "Build/Launch Module N"]
+Integration Test Module 1 [color: green, icon: check-square]
+Test > Integration Test Module 1: Parallel
+Integration Test Dependency N [color: green, icon: check-square]
+Test > Integration Test Dependency N
+Smoke Test [color: green, icon: activity]
+Test > Smoke Test
+End-to-End Test [color: green, icon: shuffle]
+Test > End-to-End Test
+Test Results [color: lightyellow, icon: file-text]
+Integration Test Module 1 > Test Results [shape: document]
+Integration Test Dependency N > Test Results
+Smoke Test > Test Results
+End-to-End Test > Test Results
+buildreporthtml [color: lightyellow, icon: file]
+SCM Checkout > buildreporthtml [label: "build-report.html", shape: document]
+BuildLaunchDocker > buildreporthtml[label: "build-report.html"]
+Test > buildreporthtml
+Deploy > buildreporthtml: Generate on catch of finally

@@ -1,0 +1,42 @@
+title eCommerce serverless architecture with Google Cloud
+direction down
+CONSUMER {
+  Computer [icon: laptop]
+  Smartphone [icon: mobile]
+}
+
+Google Cloud Project {
+  APPLICATION {
+    Web {
+      Firebase [icon: firebase]
+    }
+    PostgreSQL {
+      Cloud SQL [icon: gcp-cloud-sql]
+    }
+    Configuration {
+      Secret Manager [icon: gcp-secret-manager]
+    }
+    Django API (DRF) {
+      Cloud Run [icon: gcp-cloud-run]
+    }
+    Static content {
+      Cloud Storage [icon: gcp-cloud-storage]
+    }
+    Stored logs {
+      Cloud Logging [icon: gcp-cloud-logging]
+    }
+    Open Telemetry traces {
+      Cloud Trace [icon: gcp-trace]
+    }
+    Error reports {
+      Error Reporting [icon: gcp-error-reporting]
+    }
+  }
+}
+
+CONSUMER > Web > Django API (DRF) > Stored logs
+Django API (DRF) > Open Telemetry traces
+Django API (DRF) > Error reports
+Django API (DRF) > Configuration
+Static content <> Configuration
+PostgreSQL <> Configuration

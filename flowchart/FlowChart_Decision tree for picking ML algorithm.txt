@@ -1,0 +1,51 @@
+title Decision tree for picking ML algorithm
+K-means clustering [icon: crosshair]
+Mean shift clustering [icon: target]
+# of categories known [icon: hash]
+SGD Classifier [icon: cpu, color: lightgrey]
+
+
+Pridicting a category [icon: tag]
+Pridicting a category [shape: oval] > Have labeled data [shape: oval]:Yes
+Have labeled data > # of categories known: No
+
+Pridicting a quantity [icon: hash]
+Pridicting a category > Pridicting a quantity [shape: oval]:No
+
+
+100k+ samples [icon: hash]
+Have labeled data > 100k+ samples [shape: oval]:Yes
+Have labeled data [icon: check-square]
+
+100k+ samples > SGD Classifier:Yes
+
+Text data [icon: file-text]
+100k+ samples > Text data [shape: oval]:No
+
+Naive Bayes [icon: activity, color: lightgrey]
+Text data > Naive Bayes:Yes
+
+K-nearest neighbors (KNN) [icon: users, color: lightgrey]
+Text data > K-nearest neighbors (KNN):No
+
+# of categories known > K-means clustering [color: lightgrey]:Yes
+# of categories known > Mean shift clustering [color: lightgrey]: No
+
+
+100k+ samples2 [icon: hash]
+Pridicting a quantity > 100k+ samples2 [shape: oval, label: "100k+ samples"]:Yes
+
+Randomized PCA [icon: layers, color: lightgrey]
+Pridicting a quantity > Randomized PCA:No
+
+Stochastic gradient descent [icon: trending-up, color: lightgrey]
+100k+ samples2 > Stochastic gradient descent:No
+
+Few features important [icon: filter]
+100k+ samples2 > Few features important [shape: oval]:Yes
+
+Lasso regression [icon: minus, color: lightgrey]
+Few features important > Lasso regression:Yes
+
+Ridge regression [icon: plus, color: lightgrey]
+Few features important > Ridge regression:No

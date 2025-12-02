@@ -1,0 +1,21 @@
+Scheduler [icon: gcp-cloud-scheduler]
+Cloud Run1 [icon: gcp-cloud-run, label: "Cloud Run"]
+Tasks1 [icon: gcp-cloud-tasks, label: "Tasks"]
+Cloud Run2 [icon: gcp-cloud-run, label: "Cloud Run"]
+Tasks2 [icon: gcp-cloud-tasks, label: "Tasks"]
+Data Store [icon: gcp-datastore]
+Cloud Run3 [icon: gcp-cloud-run, label: "Cloud Run"]
+Cloud Storage [icon: gcp-cloud-storage]
+CDN [icon: gcp-cloud-cdn]
+Client {
+  Web [icon: laptop]
+  Mobile [icon: mobile]
+  Users [icon: users]
+}
+External data service [icon: file-pdf]
+
+Scheduler > Cloud Run1
+Cloud Run1 > Tasks1 
+Tasks1 > Cloud Run2
+Cloud Run2 > Data Store <> Cloud Run3 > Cloud Storage > CDN > Client
+External data service <> Cloud Run2 > Tasks2 > Cloud Run3

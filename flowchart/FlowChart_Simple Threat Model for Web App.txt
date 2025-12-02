@@ -1,0 +1,20 @@
+title Simple Threat Model for Web App
+direction right
+
+User [icon: user]
+Client [shape: circle, icon: monitor]
+Client Files [label: Files in File System, shape: cylinder, icon: file]
+Internet {
+  Server [shape: circle, icon: server]
+  SQL Server [shape: circle, icon: sql-server]
+  Server Files [label: Files in File System, shape: cylinder, icon: file]
+  Metadata [shape: cylinder, icon: tag]
+  Admin Tool [shape: circle, icon: tool]
+  Admin [icon: user]
+}
+
+User <> Client <> Server <> SQL Server <> Server Files
+Server <> Admin Tool <> Admin
+SQL Server <> Metadata
+Client > Client Files: Copies from Web
+Client Files > Client: Copies to Web

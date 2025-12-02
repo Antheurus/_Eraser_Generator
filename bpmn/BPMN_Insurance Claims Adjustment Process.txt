@@ -1,0 +1,79 @@
+  // BPMN for Insurance Claims Adjustment Process
+
+  title Insurance Claims Adjustment Process
+
+  Customer [color: teal] {
+    Report Loss [type: event, icon: alert-triangle]
+    Provide Documentation [type: activity, icon: file-text]
+    Receive Payout Offer [type: event, icon: mail]
+    Accept Offer [type: activity, icon: thumbs-up]
+    Disagree Offer [type: activity, icon: thumbs-down]
+    Receive Payment [type: event, icon: dollar-sign]
+    Claim Complete Customer [type: event, label: "Claim Complete", icon: check-circle]
+    Not Covered Notified [type: event, label: "Not Covered Notified", icon: x-circle]
+  }
+
+  Intake Team [color: blue] {
+    Record Details [type: activity, icon: edit]
+    Check Policy Coverage [type: activity, icon: shield]
+    Covered? [type: gateway, icon: help-circle]
+    Assign Adjuster [type: activity, icon: user-check]
+    Close Case [type: activity, icon: archive]
+  }
+
+  Adjuster [color: orange] {
+    Request Documentation [type: activity, icon: inbox]
+    Evaluate Need for Inspection [type: activity, icon: search]
+    Inspection Needed? [type: gateway, icon: help-circle]
+    Schedule Inspection [type: activity, icon: calendar]
+    Review Damage [type: activity, icon: eye]
+    Estimate Cost [type: activity, icon: dollar-sign]
+    Supervisor Review [type: activity, icon: user]
+    Send Payout Offer [type: activity, icon: send]
+    "Senior Adjuster Re-evaluate" [type: activity, icon: user-plus]
+    Send New Offer [type: activity, icon: refresh-cw]
+    Claim Complete Adjuster [type: event, label: "Claim Complete", icon: check-circle]
+  }
+
+  Payments Team [color: green] {
+    Send Payment [type: activity, icon: credit-card]
+    Claim Complete Payments [type: event, label: "Claim Complete", icon: check-circle]
+  }
+
+  // Connections
+
+  Report Loss > Record Details
+  Record Details > Check Policy Coverage
+  Check Policy Coverage > Covered?
+  Covered? > Assign Adjuster : Yes
+  Covered? > Not Covered Notified : No
+  Not Covered Notified > Close Case
+
+  Assign Adjuster > Request Documentation
+  Request Documentation --> Provide Documentation : Request for docs
+  Provide Documentation --> Request Documentation : Docs submitted
+
+  Request Documentation > Evaluate Need for Inspection
+  Evaluate Need for Inspection > Inspection Needed?
+  Inspection Needed? > Schedule Inspection : Yes
+  Inspection Needed? > Review Damage : No
+  Schedule Inspection > Review Damage
+  Review Damage > Estimate Cost
+  Estimate Cost > Supervisor Review
+  Supervisor Review > Send Payout Offer
+  Send Payout Offer --> Receive Payout Offer : Payout offer
+
+  Receive Payout Offer > Accept Offer
+  Receive Payout Offer > Disagree Offer
+
+  Accept Offer --> Send Payment : Accepted
+  Send Payment --> Receive Payment : Payment sent
+  Receive Payment > Claim Complete Customer
+  Send Payment > Claim Complete Payments
+  Send Payment > Claim Complete Adjuster
+
+  Disagree Offer --> "Senior Adjuster Re-evaluate" : Disagreed
+  "Senior Adjuster Re-evaluate" > Send New Offer
+  Send New Offer --> Receive Payout Offer : New offer
+
+  // End nodes are for process completion

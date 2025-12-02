@@ -1,0 +1,35 @@
+Training {
+  Image Data [icon: image]
+  Label [icon: bold]
+  Get Embedings [icon: file-text]
+  Model [icon: machine-learning]
+  Embedding [icon: graph]
+  Metadata [icon: data]
+  Pinecone [icon: pinecone]
+}
+
+Detecting {
+  Image Data2 [icon: image,label: "Image Data"]
+  Label2 [icon: bold, label: "Label"]
+  Get Embedings2 [icon: file-text, label: "Get Embeddings"]
+  Model2 [icon: machine-learning, label: "Model"]
+  Embedding2 [icon: graph,label: "Embedding"]
+  Metadata2 [icon: data,label: "Metadata"]
+  Pinecone2 [icon: pinecone,label: "Pinecone"]
+}
+
+Phone [icon: mobile]
+
+Phone > Image Data:camera
+Phone > Label: user input
+Phone > Image Data2:camera
+Image Data2 > Get Embedings2 > Embedding2
+Embedding2 > Pinecone2: query
+Model2 > Get Embedings2
+Metadata2 > Phone
+Pinecone2 > Metadata2
+
+Image Data > Get Embedings > Embedding
+Label > Metadata
+Metadata > Pinecone:upsert
+Model > Get Embedings

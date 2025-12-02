@@ -1,0 +1,19 @@
+User [icon: user] -> Mobile app client [icon: mobile]
+activate Mobile app client
+Mobile app client -> Backend service:Valid user/session?
+activate Backend service
+Backend service [icon: server] --> Mobile app client
+Mobile app client -> Mobile app client:Have access token?
+Mobile app client -> Backend service:Generate access token
+Backend service --> Mobile app client:Cache access token
+Mobile app client -> PubSubProxy [icon: gcp-google-kubernetes-engine, label: "Pub/Sub proxy"]:Publish access token
+deactivate Backend service
+activate PubSubProxy
+PubSubProxy > PubSubProxy:Validate access token
+PubSubProxy -> PubSub [icon: gcp-pubsub]:Publish service account
+PubSub -> PubSub:Validate ACLs
+activate PubSub
+deactivate PubSub
+Mobile app client -> PubSubProxy:Publish access token
+deactivate Mobile app client
+deactivate PubSubProxy

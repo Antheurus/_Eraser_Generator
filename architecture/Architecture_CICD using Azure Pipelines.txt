@@ -1,0 +1,41 @@
+direction right
+
+Azure Artifacts [icon: azure-ad-b2c]
+Azure Key Vault [icon: azure-key-vaults]
+Developer [icon: azure-users]
+Repositories [icon: git]
+Azure Pipelines (PR) [icon: rocket]
+Azure Pipelines (CI) [icon: rocket]
+Azure Pipelines (CD) [icon: rocket]
+
+Deployments {
+  Staging {
+    Azure App Services [icon: azure-app-services]
+    Virtual Machines [icon: azure-virtual-machine]
+    Azure Power Platform [icon: power-platform]
+  }
+  Production {
+    Azure App Services 2 [icon: azure-app-services, label: "Azure App Services 2"]
+    Virtual Machines 2 [icon: azure-virtual-machine, label: "Virtual Machines"]
+    Azure Power Platform 2 [icon: power-platform, label: "Azure Power Platform"]
+  }
+}
+
+Insights {
+  Azure Monitor [icon: azure-monitor]
+  Application Insights [icon: azure-application-insights]
+  Log Analytics Workspace [icon: azure-log-analytics-workspaces]
+}
+Operator [icon: azure-users]
+
+
+Developer > Repositories > Azure Pipelines (PR) > Azure Pipelines (CI) > Azure Pipelines (CD) > Staging
+Azure Pipelines (CD) > Production
+
+Azure Artifacts > Azure Pipelines (PR)
+Azure Artifacts > Azure Pipelines (CI)
+Azure Key Vault > Azure Pipelines (CI)
+
+Developer <-- Azure Pipelines (CD)
+Developer <-- Azure Pipelines (CI)
+Developer <-- Deployments

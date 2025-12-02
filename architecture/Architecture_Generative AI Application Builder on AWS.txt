@@ -1,0 +1,43 @@
+Admin users [icon: users]
+Client [icon: computer]
+
+AWS Cloud [icon: aws] {
+  AWS WAF V2 WebACL [icon: aws-waf]
+  Amazon API Gateway [icon: aws-api-gateway]
+  AWS Lambda Backing Functions [icon: aws-lambda]
+  AWS CloudFormation [icon: aws-cloudformation]
+  Amazon S3 AWS Solutions Artifact Bucket [icon: aws-s3]
+  Stacks [icon: layout]
+
+  Amazon CloudFront [icon: aws-cloudfront]
+  Amazon Cognito [icon: aws-cognito]
+  Amazon DynamoDB Configuration Store [icon: aws-dynamodb]
+  Amazon S3 [icon: aws-s3]
+  Parameter Store [icon: archive]
+
+  Filtered event for Remove on TTL expiry [icon: box]
+  AWS Secrets Manager [icon: aws-secrets-manager]
+  Parameter Store 2 [icon: archive, label: "Parameter Store"]
+  Lambda function [icon: aws-lambda]
+
+  Amazon CloudWatch Custom Dashboard[icon: aws-cloudwatch]
+
+  Use Case & Nested Templates [icon: list]
+}
+
+Admin users > Client > Amazon CloudFront > Amazon Cognito
+Amazon CloudFront > Amazon S3
+Parameter Store --> Amazon S3: Web App (U)
+
+Client > AWS WAF V2 WebACL > Amazon API Gateway > Amazon Cognito
+Amazon API Gateway > AWS Lambda Backing Functions
+AWS Lambda Backing Functions > Amazon DynamoDB Configuration Store: Store Stack ID as returned by AWS CloudFormation
+Amazon DynamoDB Configuration Store > Filtered event for Remove on TTL expiry > Lambda function
+Lambda function > Parameter Store 2: Delete key
+
+AWS Lambda Backing Functions > Parameter Store 2: Store LLM configuration (prompt, temperature, and other params)
+AWS Lambda Backing Functions > AWS Secrets Manager: API key
+AWS Lambda Backing Functions > AWS CloudFormation: Stack ID
+AWS CloudFormation > Stacks
+AWS CloudFormation > Amazon S3 AWS Solutions Artifact Bucket
+

@@ -1,0 +1,19 @@
+User [icon: user]
+domain1.com [color: gray]
+domain2.com [color: green]
+Browser Cookie Storage [color: orange]
+Auth0 [icon: auth0, color: red]
+
+User > domain1.com:Browses to
+domain1.com > Auth0 [icon: auth0, color: red]:Redirects to
+Auth0 > Auth0:Either user logs in, or cookie is available
+Browser Cookie Storage <> Auth0:Stores Cookie
+Auth0 > domain1.com:Sends token and redirects
+domain1.com > domain1.com:Uses Token to Authenticate
+domain1.com > Browser Cookie Storage:Stores domain1 Cookie
+User > domain2.com:Browses to
+domain2.com > Auth0:Redirects to
+Auth0 > Auth0:Either user logs in, or cookie is available
+Auth0 > domain2.com:Sends token and redirects to
+domain2.com > domain2.com:Uses Token to Authenticate
+domain2.com > Browser Cookie Storage:Stores domain2 Cookie

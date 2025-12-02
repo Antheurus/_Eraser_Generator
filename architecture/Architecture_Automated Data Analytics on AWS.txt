@@ -1,0 +1,13 @@
+Client [icon: computer]
+Amazon Rekognition [icon: aws-rekognition]
+CloudFormation Stack {
+  Amazon CloudFront [icon: aws-cloudfront]
+  Amazon API Gateway [icon: aws-api-gateway]
+AWS Lambda [icon: aws-lambda]
+  Amazon S3 [icon: aws-s3]
+  AWS Secrets Manager [icon: aws-secrets-manager]
+}
+
+Client < Amazon CloudFront <> Amazon API Gateway <> AWS Lambda <> Amazon S3
+AWS Lambda <> Amazon Rekognition
+AWS Lambda <> AWS Secrets Manager

@@ -1,0 +1,31 @@
+Sex [icon: user, shape: oval]
+Age [icon: calendar, shape: oval]
+Passenger class [icon: layers, shape: oval]
+Survival odds 16% [icon: percent, color: red]
+Family size [icon: users, shape: oval]
+Survival odds 6% [icon: percent, color: red]
+Survival odds 96% [icon: percent, color: blue]
+Family size2 [icon: users, shape: oval, label: "Family size"]
+Survival odds 95% [icon: percent, color: blue]
+Survival odds 11% [icon: percent, color: red]
+Age2 [icon: calendar, shape: oval, label: "Age"]
+Survival odds 14% [icon: percent, color: red]
+Survival odds 62% [icon: percent, color: blue]
+
+Sex > Age: Male  
+Sex > Passenger class: Female  
+
+Age > Survival odds 16%: 13+  
+Age > Family size: <13  
+
+Family size > Survival odds 6%: 5+  
+Family size > Survival odds 96%: <5  
+
+Passenger class > Family size2: 3rd class  
+Passenger class > Survival odds 95%: 1st, 2nd class  
+
+Family size2 > Survival odds 11%: 5+  
+Family size2 > Age2: <5  
+
+Age2 > Survival odds 14%: 36+  
+Age2 > Survival odds 62%: <36  

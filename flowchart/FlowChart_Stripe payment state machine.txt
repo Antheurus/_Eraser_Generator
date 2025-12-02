@@ -1,0 +1,25 @@
+direction right
+Source [icon: database, color: green] {
+  chargeable [icon: check-circle]
+  Create Charge [color: lightgrey, icon: credit-card, shape: oval]
+  pending [icon: clock]
+  failed [icon: x-circle]
+}
+
+Charge [icon: dollar-sign, color: blue] {
+  succeeded [icon: check]
+  pending2 [icon: clock, label: "pending"]
+  failed2 [icon: x-circle, label: "failed"]
+}
+
+Start payment flow [color: lightgrey, icon: flag, shape: oval]
+Create Source [color: lightgrey, icon: plus-circle, shape: oval]
+Fulfill order [color: lightgrey, icon: box, shape: oval]
+
+Start payment flow > Create Source > pending > failed
+
+Create Source > chargeable > Create Charge > succeeded
+Create Charge > pending2 > succeeded > Fulfill order
+pending2 > failed2
+failed > Start payment flow
+failed2 > Start payment flow

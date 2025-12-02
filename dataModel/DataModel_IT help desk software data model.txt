@@ -1,0 +1,82 @@
+customer [icon: user]{
+  id string pk
+  name string
+  email string
+}
+
+ticket [icon: file-text]{
+  id string pk
+  title string
+  description string
+  status string
+  priority string
+  customerId string
+  agentId string
+  queueId string
+}
+
+agent [icon: user-check]{
+  id string pk
+  name string
+  email string
+  queueId string
+}
+
+queue [icon: list]{
+  id string pk
+  name string
+}
+
+solution [icon: check-circle]{
+  id string pk
+  ticketId string
+  description string
+}
+
+product [icon: package]{
+  id string pk
+  name string
+}
+
+ticket_product [icon: link]{
+  ticketId string
+  productId string
+}
+
+department [icon: users]{
+  id string pk
+  name string
+}
+
+agent_department [icon: link]{
+  agentId string
+  departmentId string
+}
+
+feedback [icon: thumbs-up]{
+  id string pk
+  ticketId string
+  rating number
+  comment string
+}
+
+escalation [icon: alert-triangle]{
+  id string pk
+  ticketId string
+  reason string
+  escalatedAt timestamp
+}
+
+// define relationships
+ticket.customerId > customer.id
+ticket.agentId > agent.id
+ticket.queueId > queue.id
+solution.ticketId > ticket.id
+ticket_product.ticketId > ticket.id
+ticket_product.productId > product.id
+agent_department.agentId > agent.id
+agent_department.departmentId > department.id
+feedback.ticketId > ticket.id
+escalation.ticketId > ticket.id
+agent.queueId > queue.id
+

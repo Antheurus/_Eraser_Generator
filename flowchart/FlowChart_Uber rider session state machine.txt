@@ -1,0 +1,20 @@
+direction right
+
+On Trip [shape: circle, icon: car]
+App Closed [color: slateblue, icon: x-square, shape: circle]
+App Opened [color: slateblue, icon: smartphone, shape: circle]
+Session Started [shape: circle, icon: flag]
+Choose Destination [shape: circle, icon: map-pin]
+Shopping [shape: circle, icon: shopping-bag]
+Request [shape: circle, icon: phone]
+Session Ended [shape: circle, icon: x-square]
+
+On Trip > App Closed > App Opened > Session Started > Choose Destination > Shopping > App Closed
+
+Session Started > App Closed
+
+App Opened > Shopping > Request > On Trip > Session Ended
+
+App Opened > Request
+App Opened > App Closed
+Shopping < Request
